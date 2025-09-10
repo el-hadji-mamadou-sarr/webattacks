@@ -125,7 +125,7 @@ python3 -m http.server 5000
 
 - Je fais le méme test sur la page malveillante sur le port 8000.
 
-<img width="724" height="175" alt="Screenshot from 2025-09-10 17-14-09" src="https://github.com/user-attachments/assets/91822b2e-23b1-4570-ba3d-126fdadaf378" />
+<img width="1836" height="307" alt="Screenshot from 2025-09-10 18-53-44" src="https://github.com/user-attachments/assets/10829bd0-e526-4b9b-ae56-af19cf44806f" />
 
 - La requéte pour récupérer le cookie ne marche plus car l'origine n'est pas ```http://localhost:5000```.
 
