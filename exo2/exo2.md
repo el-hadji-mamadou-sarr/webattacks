@@ -5,7 +5,7 @@
 1. Avec un script docker-compose.yml, j'ai pu créer l'architechture du DVWA.
 2. J'ai configuré le DVWA en mode "low" pour faciliter les tests de sécurité.
 
-[image](images/Screenshot%20from%202025-09-10%2016-19-28.png)
+<img width="816" height="681" alt="Screenshot from 2025-09-10 16-19-28" src="https://github.com/user-attachments/assets/c9dd9fb4-8b56-4929-8675-161f2b53f4af" />
 
 ## Vunérabilité CORS
 
@@ -69,11 +69,11 @@ J'ai créé un fichier `exploit.html` qui exploite la vulnérabilité CORS pour 
 
 - Dans cette article, [url](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS), il est dit que , lorsque `Access-Control-Allow-Origin` est défini sur `*`, les navigateurs n'incluent pas les cookies dans les requêtes CORS, même si `credentials: 'include'` est spécifié. Cela signifie que le cookie de session ne sera pas envoyé avec la requête fetch, et par conséquent, le script ne pourra pas voler le cookie de session.
 
-[image](images/Screenshot%20from%202025-09-10%2017-37-34.png)
+<img width="785" height="141" alt="Screenshot from 2025-09-10 17-37-34" src="https://github.com/user-attachments/assets/609b4530-ed08-4c6c-bd4b-ecb87d29a9a3" />
 
 - Donc pour contourner cette restrition j'utilise l'extension `Allow-CORS` dans le navigateur qui permet de désactiver la politique CORS pour les tests de sécurité.
 
-[image](images/Screenshot%20from%202025-09-10%2017-39-26.png)
+<img width="667" height="443" alt="Screenshot from 2025-09-10 17-39-26" src="https://github.com/user-attachments/assets/13c4aaef-6fff-493b-a3ee-63e299045199" />
 
 - Je sert cette page malveillante en utilisant un serveur HTTP simple:
 
@@ -83,7 +83,7 @@ python3 -m http.server 8000
 
 - Le cookie volé est affiché dans la page HTML.
 
-[image](images/Screenshot%20from%202025-09-10%2016-48-41.png)
+<img width="816" height="681" alt="Screenshot from 2025-09-10 16-48-41" src="https://github.com/user-attachments/assets/baeb4db3-68ce-4e81-b11f-992258673d8f" />
 
 ### Capturer le traffic avec Burp Suite
 
@@ -92,16 +92,17 @@ python3 -m http.server 8000
 - Je me suis loggué dans le DVWA pour générer un cookie de session.
 - Puis j'ai visité la page vulnérable `http://localhost:8080/cors_vulnerability.php` pour m'assurer que le cookie est bien renvoyé.
 
-[image](images/Screenshot%20from%202025-09-10%2016-57-59.png)
+
+<img width="1222" height="456" alt="Screenshot from 2025-09-10 16-57-59" src="https://github.com/user-attachments/assets/4597088e-929a-4cd7-af7a-ea2483eec160" />
 
 - Ensuite, j'ai visité la page malveillante `http://localhost:8000/exploit.html` pour exécuter le script de vol de cookie.
 
-[image](images/Screenshot%20from%202025-09-10%2016-59-46.png)
+<img width="650" height="236" alt="Screenshot from 2025-09-10 16-59-46" src="https://github.com/user-attachments/assets/3bae2811-680c-4eaa-9e59-e63e275d40f3" />
 
 - Que je forward dans BlurpSuite pour avoir la réponse.
 - J'intercepte encore la réquéte vers `http://localhost:8080/cors_vulnerability.php` qui contient le cookie de session dans la réponse que je forwarde pour avoir le cookie dasn la réponse de la page malveillante.
 
-[image](images/Screenshot%20from%202025-09-10%2017-03-08.png)
+<img width="1220" height="492" alt="Screenshot from 2025-09-10 17-03-08" src="https://github.com/user-attachments/assets/f5a66b86-c1a9-4dc0-a65c-9578b95f2b97" />
 
 ### Contre-mesure
 
@@ -119,15 +120,14 @@ python3 -m http.server 5000
 
 - Et j'obtient bien le cookie.
 
-[image](images/Screenshot%20from%202025-09-10%2017-44-39.png)
-
+<img width="667" height="275" alt="Screenshot from 2025-09-10 17-44-39" src="https://github.com/user-attachments/assets/19a0e25e-812f-4d94-8929-b115cae042f6" />
 
 - Je fais le méme test sur la page malveillante sur le port 8000.
 
-[image](images/Screenshot%20from%202025-09-10%2017-14-09.png)
+<img width="724" height="175" alt="Screenshot from 2025-09-10 17-14-09" src="https://github.com/user-attachments/assets/91822b2e-23b1-4570-ba3d-126fdadaf378" />
 
 - La requéte pour récupérer le cookie ne marche plus car l'origine n'est pas ```http://localhost:5000```.
 
-
+<img width="711" height="380" alt="Screenshot from 2025-09-10 16-53-28" src="https://github.com/user-attachments/assets/b0f3260f-e357-4738-a96a-27801711305b" />
 
 
