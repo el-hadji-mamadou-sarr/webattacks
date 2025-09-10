@@ -130,3 +130,23 @@ python3 -m http.server 5000
 - La requéte pour récupérer le cookie ne marche plus car l'origine n'est pas ```http://localhost:5000```.
 
 
+### Questions
+- Pourquoi « Access-Control-Allow-Origin: * » est-il dangereux ?
+
+parce qu'il permet à n'importe quelle origine d'accéder aux ressources, ce qui peut exposer des données sensibles à des sites malveillants.
+
+- Quel rôle joue « Access-Control-Allow-Credentials: true » ?
+
+Il permet au serveur d'indiquer si la réponse peut contenir des informations liées à l'authentification, comme les cookies.
+
+- Comment un attaquant pourrait-il exploiter cette faille ?
+
+Un attaquant pourrait faire une requéte au serveur vulnérable depuis un site malveillant pour voler des cookies de session ou d'autres informations sensibles.
+
+- Quelles sont les bonnes pratiques pour configurer CORS ?
+
+1. Restreindre les origines autorisées à des domaines spécifiques de confiance.
+2. Éviter d'utiliser `*` pour `Access-Control-Allow-Origin` lorsque des cookies ou des informations sensibles sont impliqués.
+3. Eviter de mettre `Access-Control-Allow-Credentials: true` si ce n'est pas nécessaire.
+4. Eviter d'exposer des cookies ou des informations sensibles via des requêtes CORS.
+
