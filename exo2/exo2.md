@@ -92,7 +92,6 @@ python3 -m http.server 8000
 - Je me suis loggué dans le DVWA pour générer un cookie de session.
 - Puis j'ai visité la page vulnérable `http://localhost:8080/cors_vulnerability.php` pour m'assurer que le cookie est bien renvoyé.
 
-
 <img width="1222" height="456" alt="Screenshot from 2025-09-10 16-57-59" src="https://github.com/user-attachments/assets/4597088e-929a-4cd7-af7a-ea2483eec160" />
 
 - Ensuite, j'ai visité la page malveillante `http://localhost:8000/exploit.html` pour exécuter le script de vol de cookie.
@@ -101,6 +100,8 @@ python3 -m http.server 8000
 
 - Que je forward dans BlurpSuite pour avoir la réponse.
 - J'intercepte encore la réquéte vers `http://localhost:8080/cors_vulnerability.php` qui contient le cookie de session dans la réponse que je forwarde pour avoir le cookie dasn la réponse de la page malveillante.
+
+<img width="711" height="380" alt="Screenshot from 2025-09-10 16-53-28" src="https://github.com/user-attachments/assets/b0f3260f-e357-4738-a96a-27801711305b" />
 
 <img width="1220" height="492" alt="Screenshot from 2025-09-10 17-03-08" src="https://github.com/user-attachments/assets/f5a66b86-c1a9-4dc0-a65c-9578b95f2b97" />
 
@@ -127,7 +128,5 @@ python3 -m http.server 5000
 <img width="724" height="175" alt="Screenshot from 2025-09-10 17-14-09" src="https://github.com/user-attachments/assets/91822b2e-23b1-4570-ba3d-126fdadaf378" />
 
 - La requéte pour récupérer le cookie ne marche plus car l'origine n'est pas ```http://localhost:5000```.
-
-<img width="711" height="380" alt="Screenshot from 2025-09-10 16-53-28" src="https://github.com/user-attachments/assets/b0f3260f-e357-4738-a96a-27801711305b" />
 
 
