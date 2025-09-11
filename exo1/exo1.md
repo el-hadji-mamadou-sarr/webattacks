@@ -83,8 +83,7 @@ nmap -A -p 8000 localhost
 ```bash
 nikto -h http://localhost:8000
 ```
-
-<img width="762" height="974" alt="Screenshot from 2025-09-11 14-50-48" src="https://github.com/user-attachments/assets/47c46a20-f688-4740-8553-4fc7a783adbf" />
+<img width="809" height="443" alt="Screenshot from 2025-09-11 18-01-08" src="https://github.com/user-attachments/assets/7143df1c-3066-41ca-a1cf-87cfade2b5e0" />
 
 
 - On voit plusieurs vulnérabilités de sécurité importantes:
@@ -96,8 +95,8 @@ nikto -h http://localhost:8000
 ```bash
 nikto -h http://localhost:8000 -Plugins "apache"
 ```
+<img width="639" height="252" alt="Screenshot from 2025-09-11 17-59-53" src="https://github.com/user-attachments/assets/1a46b3e6-9cc7-4301-b493-8f91d420d396" />
 
-image [58-48]
 
 - Dans le réultat le résultat du scan, rien n'a été détecté.
 
