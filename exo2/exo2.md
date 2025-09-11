@@ -21,7 +21,6 @@ echo "Votre cookie de session : " . $_COOKIE['PHPSESSID'];
 
 - Le header `Access-Control-Allow-Origin: *` permet à n'importe quelle origine d'accéder à la ressource.
 - Le header `Access-Control-Allow-Credentials: true` permet d'autoriser l'envoi des cookies avec les requêtes CORS.
-
 - J'ai monté la vulnérabilité dans le conteneur DVWA.
 
 ```yml
